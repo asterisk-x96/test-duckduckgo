@@ -543,7 +543,7 @@ from selenium.webdriver.common.by import By
 
 class DuckDuckGoSearchPage:
 
-  SEARCH_INPUT = (By.ID, 'search_form_input_homepage')
+  SEARCH_INPUT = (By.ID, 'searchbox_input')
 
   def __init__(self, browser):
     self.browser = browser
@@ -697,9 +697,9 @@ class DuckDuckGoSearchPage:
   def load(self):
     self.browser.get(self.URL)
 
-  def search(self, phrase):
-    search_input = self.browser.find_element(*self.SEARCH_INPUT)
-    search_input.send_keys(phrase + Keys.RETURN)
+    def search(self, phrase):
+      search_input = self.browser.find_element(*self.SEARCH_INPUT)  # Use find_element instead of find_elements
+      search_input.send_keys(phrase + Keys.RETURN)
 ```
 
 Now, let's do `DuckDuckGoResultPage`.
