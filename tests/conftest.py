@@ -1,24 +1,19 @@
-"""
-This module contains shared fixtures
-"""
 import json
 import pytest
 import selenium.webdriver
 
-
 @pytest.fixture
 def config(scope='session'):
     with open('config.json') as config_file:
-        config = json.load(config_file)
+        config_data = json.load(config_file)
+    return config_data
 
-assert config['browser'] in ['Firefox', 'Chrome', 'Headless Chrome']
-assert isinstance(config['implicit_wait'], int)
-assert config['implicit_wait'] > 0
-
+def test_config_implicit_wait(config):
+    assert isinstance(config['implicit_wait'], int)
+    assert config['implicit_wait'] > 0
 
 @pytest.fixture
 def browser():
-
     # Initialize the ChromeDrive instance
     b = selenium.webdriver.Chrome()
 
@@ -30,7 +25,3 @@ def browser():
 
     # Quit the WebDrive instance for the cleanup
     b.quit()
-    
-
-
-

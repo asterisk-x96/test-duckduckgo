@@ -31,4 +31,3 @@ class DuckDuckGoResultPage:
   def title(self):
     return self.browser.title
 
-# RESULT_LINKS = (By.CSS_SELECTOR, '[data-testid="result-title-a"]')
